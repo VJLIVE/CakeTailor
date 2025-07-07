@@ -56,6 +56,7 @@ flutter:
     - assets/First_Screen.jpg
     - assets/google_icon.png
     - assets/Signup.jpg
+    - assets/Login.jpg
 
   # To add assets to your application, add an assets section, like this:
   # assets:

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'login.dart';
+import 'signup.dart';
 
-class SignupScreen extends StatelessWidget {
-  const SignupScreen({super.key});
+class LoginScreen extends StatelessWidget {
+  const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class SignupScreen extends StatelessWidget {
               width: size.width,
               height: 402,
               child: Image.asset(
-                'assets/Signup.jpg',
+                'assets/Login.jpg',
                 fit: BoxFit.cover,
               ),
             ),
@@ -45,15 +45,15 @@ class SignupScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      TextField(
-                        decoration: InputDecoration(
-                          hintText: 'Full Name',
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(6),
-                          ),
+                      const Text(
+                        'Welcome Back!',
+                        style: TextStyle(
+                          fontSize: 28,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
                         ),
                       ),
-                      const SizedBox(height: 16),
+                      const SizedBox(height: 24),
                       TextField(
                         decoration: InputDecoration(
                           hintText: 'Username',
@@ -84,7 +84,7 @@ class SignupScreen extends StatelessWidget {
                           ),
                           onPressed: () {},
                           child: const Text(
-                            'Next',
+                            'Login',
                             style: TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
@@ -136,16 +136,16 @@ class SignupScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Text('Already have an account?'),
+                          const Text("Don't have an account?"),
                           TextButton(
                             onPressed: () {
                               Navigator.pushReplacement(
                                 context,
-                                MaterialPageRoute(builder: (context) => LoginScreen()),
+                                MaterialPageRoute(builder: (context) => SignupScreen()),
                               );
                             },
                             child: const Text(
-                              'Login',
+                              'Signup',
                               style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
                             ),
                           ),
@@ -168,21 +168,6 @@ class SignupScreen extends StatelessWidget {
                 ),
               ),
             ),
-
-            // "Get Started!" above the overlay
-            Positioned(
-              top: 201 - 15,
-              left: 24,
-              child: const Text(
-                'Get Started!',
-                style: TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                ),
-              ),
-            ),
-
             // Back Button
             Positioned(
               top: 40,
