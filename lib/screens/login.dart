@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'signup.dart';
+import 'home.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -82,7 +83,12 @@ class LoginScreen extends StatelessWidget {
                               borderRadius: BorderRadius.circular(6),
                             ),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(builder: (context) => HomePage()),
+                            );
+                          },
                           child: const Text(
                             'Login',
                             style: TextStyle(
