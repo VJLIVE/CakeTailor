@@ -27,10 +27,19 @@ class HomePage extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Icon(Icons.arrow_back, color: Colors.black),
+                    Transform.translate(
+                      offset: const Offset(-8, 0), // move 8px to the left
+                      child: IconButton(
+                        padding: EdgeInsets.zero,
+                        constraints: const BoxConstraints(),
+                        icon: const Icon(Icons.arrow_back, color: Colors.black),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                      ),
+                    ),
                     IconButton(
-                      icon: const Icon(Icons.sticky_note_2_outlined,
-                          color: Colors.black),
+                      icon: const Icon(Icons.sticky_note_2_outlined, color: Colors.black),
                       onPressed: () {},
                     ),
                   ],
@@ -215,8 +224,7 @@ class HomePage extends StatelessWidget {
       ),
       bottomNavigationBar: CustomBottomNavBar(
         currentIndex: 0,
-        onTap: (index) {
-        },
+        onTap: (index) {},
       ),
     );
   }
