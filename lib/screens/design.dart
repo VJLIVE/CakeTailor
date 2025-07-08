@@ -33,9 +33,9 @@ class DesignPage extends StatelessWidget {
               ),
             ),
 
-            /// 🔷 Title
+            /// 🔷 Title text
             const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 24),
+              padding: EdgeInsets.symmetric(horizontal: 16),
               child: Text(
                 'Pick Your\nFavorite Choice',
                 style: TextStyle(
@@ -45,23 +45,22 @@ class DesignPage extends StatelessWidget {
                 ),
               ),
             ),
-
             const SizedBox(height: 12),
-
-            /// 🔷 Cakes Image
-            Center(
-              child: Image.asset(
-                'assets/cakes.png',
-                height: 120,
-                fit: BoxFit.contain,
-              ),
+            /// 🔷 Cakes Image (on the right, bigger)
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Image.asset(
+                  'assets/cakes.png',
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  fit: BoxFit.contain,
+                ),
+              ],
             ),
-
-            const SizedBox(height: 16),
-
+            const SizedBox(height: 24),
             /// 🔷 Options Row
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12),
+              padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -87,7 +86,7 @@ class DesignPage extends StatelessWidget {
               ),
             ),
 
-            const SizedBox(height: 16),
+            const SizedBox(height: 24),
 
             /// 🔷 Search bar
             Padding(
@@ -98,9 +97,10 @@ class DesignPage extends StatelessWidget {
                   prefixIcon: const Icon(Icons.search),
                   filled: true,
                   fillColor: Colors.white,
-                  contentPadding: const EdgeInsets.all(12),
+                  contentPadding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide.none,
                   ),
                 ),
               ),
@@ -129,7 +129,6 @@ class DesignPage extends StatelessWidget {
     );
   }
 
-  /// 🔷 Option Card widget
   Widget _optionCard({
     required IconData icon,
     required String label,
@@ -137,8 +136,8 @@ class DesignPage extends StatelessWidget {
     required Color textColor,
   }) {
     return Container(
-      height: 60,
-      width: 100,
+      height: 50,
+      width: 100, // 👈 reduced from 120 to fit 3 cards in a row
       decoration: BoxDecoration(
         color: color,
         borderRadius: BorderRadius.circular(12),
@@ -150,17 +149,20 @@ class DesignPage extends StatelessWidget {
           ),
         ],
       ),
-      child: Column(
+      child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(icon, color: textColor, size: 20),
-          const SizedBox(height: 4),
-          Text(
-            label,
-            style: TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.bold,
-              color: textColor,
+          const SizedBox(width: 4), // 👈 reduced gap between icon & text
+          Flexible(
+            child: Text(
+              label,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                fontSize: 12, // slightly smaller if needed
+                fontWeight: FontWeight.bold,
+                color: textColor,
+              ),
             ),
           ),
         ],
