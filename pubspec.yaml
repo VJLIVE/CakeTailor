@@ -59,6 +59,7 @@ flutter:
     - assets/Signup.jpg
     - assets/Login.jpg
     - assets/cake.jpg
+    - assets/cakes.png
 
 flutter_icons:
   android: true

@@ -1,8 +1,32 @@
 import 'package:flutter/material.dart';
 import '../components/navbar.dart';
+import 'design.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int _currentIndex = 0;
+
+  void _onNavTap(int index) {
+    if (index == _currentIndex) return; // Already on this page
+    if (index == 0) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const HomePage()),
+      );
+    } else if (index == 1) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const DesignPage()),
+      );
+    }
+    // You can extend to index 2 and 3 later
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +38,7 @@ class HomePage extends StatelessWidget {
           /// 🔷 Header section
           Container(
             decoration: BoxDecoration(
-              color: const Color(0xFFEBDACF), // slightly darker shade
+              color: const Color(0xFFEBDACF),
               borderRadius: const BorderRadius.only(
                 bottomLeft: Radius.circular(16),
                 bottomRight: Radius.circular(16),
@@ -28,7 +52,7 @@ class HomePage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Transform.translate(
-                      offset: const Offset(-8, 0), // move 8px to the left
+                      offset: const Offset(-8, 0),
                       child: IconButton(
                         padding: EdgeInsets.zero,
                         constraints: const BoxConstraints(),
@@ -168,7 +192,12 @@ class HomePage extends StatelessWidget {
                                       borderRadius: BorderRadius.circular(8),
                                     ),
                                   ),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(builder: (context) => const DesignPage()),
+                                    );
+                                  },
                                   child: const Text('Start Designing'),
                                 ),
                               ),
@@ -224,7 +253,15 @@ class HomePage extends StatelessWidget {
       ),
       bottomNavigationBar: CustomBottomNavBar(
         currentIndex: 0,
-        onTap: (index) {},
+        onTap: (index) {
+          if (index == 0) return; // already here
+          if (index == 1) {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => const DesignPage()),
+            );
+          }
+        },
       ),
     );
   }

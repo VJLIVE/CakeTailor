@@ -13,60 +13,30 @@ class CustomBottomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      type: BottomNavigationBarType.fixed,
       currentIndex: currentIndex,
       onTap: onTap,
-      showSelectedLabels: false,
-      showUnselectedLabels: false,
       backgroundColor: Colors.white,
-      items: [
-        _buildNavItem(icon: Icons.home, index: 0),
-        _buildNavItem(icon: Icons.cake_outlined, index: 1),
-        _buildNavItem(icon: Icons.shopping_cart_outlined, index: 2),
-        _buildNavItem(icon: Icons.person_outline, index: 3),
+      selectedItemColor: const Color(0xFFCE8147), // orange-ish for active
+      unselectedItemColor: Colors.brown[300],
+      type: BottomNavigationBarType.fixed,
+      items: const [
+        BottomNavigationBarItem(
+          icon: Icon(Icons.home_outlined),
+          label: '',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.cake_outlined),
+          label: '',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.shopping_cart_outlined),
+          label: '',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.person_outline),
+          label: '',
+        ),
       ],
     );
-  }
-
-  /// Helper to build each BottomNavigationBarItem
-  BottomNavigationBarItem _buildNavItem({required IconData icon, required int index}) {
-    return BottomNavigationBarItem(
-      icon: _NavIcon(
-        icon: icon,
-        selected: index == currentIndex,
-      ),
-      label: '',
-    );
-  }
-}
-
-class _NavIcon extends StatelessWidget {
-  final IconData icon;
-  final bool selected;
-
-  const _NavIcon({required this.icon, required this.selected});
-
-  @override
-  Widget build(BuildContext context) {
-    if (selected) {
-      return Container(
-        padding: const EdgeInsets.all(8),
-        decoration: const BoxDecoration(
-          shape: BoxShape.circle,
-          color: Colors.orange,
-        ),
-        child: Icon(
-          icon,
-          color: Colors.white,
-          size: 24,
-        ),
-      );
-    } else {
-      return Icon(
-        icon,
-        color: Colors.grey,
-        size: 24,
-      );
-    }
   }
 }
