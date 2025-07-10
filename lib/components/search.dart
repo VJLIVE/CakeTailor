@@ -53,11 +53,10 @@ class _SearchWidgetState extends State<SearchWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
             child: TextField(
               controller: _searchController,
               decoration: InputDecoration(
@@ -113,7 +112,6 @@ class _SearchWidgetState extends State<SearchWidget> {
             ),
           ),
         ],
-      ),
-    );
+      );
   }
 }

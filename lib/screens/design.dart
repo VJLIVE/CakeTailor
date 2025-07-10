@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../components/navbar.dart';
 import 'home.dart';
 import '../components/search.dart';
+import '../components/upload.dart';
 
 class DesignPage extends StatefulWidget {
   const DesignPage({super.key});
@@ -139,12 +140,7 @@ class _DesignPageState extends State<DesignPage> {
     if (selectedOption == 0) {
       return const SearchWidget();
     } else if (selectedOption == 1) {
-      return const Center(
-        child: Text(
-          'Upload Coming Soon!',
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-        ),
-      );
+      return const UploadWidget();
     } else {
       return const Center(
         child: Text(
