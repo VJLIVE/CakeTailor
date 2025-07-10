@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../components/navbar.dart';
 import 'design.dart';
+import 'login.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -58,7 +59,10 @@ class _HomePageState extends State<HomePage> {
                         constraints: const BoxConstraints(),
                         icon: const Icon(Icons.arrow_back, color: Colors.black),
                         onPressed: () {
-                          Navigator.pop(context);
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(builder: (_) => const LoginScreen()),
+                          );
                         },
                       ),
                     ),

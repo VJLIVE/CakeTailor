@@ -180,7 +180,11 @@ class LoginScreen extends StatelessWidget {
               left: 16,
               child: IconButton(
                 onPressed: () {
-                  Navigator.pop(context);
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (_) => const SignupScreen()),
+                  );
+
                 },
                 icon: const Icon(Icons.arrow_back),
               ),

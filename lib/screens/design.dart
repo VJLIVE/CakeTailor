@@ -31,7 +31,10 @@ class _DesignPageState extends State<DesignPage> {
                   IconButton(
                     icon: const Icon(Icons.arrow_back, color: Colors.black),
                     onPressed: () {
-                      Navigator.pop(context);
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (_) => const HomePage()),
+                      );
                     },
                   ),
                   IconButton(
