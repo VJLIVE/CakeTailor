@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
 import '../components/navbar.dart';
 import 'home.dart';
+import '../components/search.dart';
 
-class DesignPage extends StatelessWidget {
+class DesignPage extends StatefulWidget {
   const DesignPage({super.key});
+
+  @override
+  State<DesignPage> createState() => _DesignPageState();
+}
+
+class _DesignPageState extends State<DesignPage> {
+  int selectedOption = 0; // 0 = Search, 1 = Upload, 2 = Manual
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +54,8 @@ class DesignPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 12),
-            /// 🔷 Cakes Image (on the right, bigger)
+
+            /// 🔷 Cakes Image (on the right)
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -57,7 +66,8 @@ class DesignPage extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: 16),
+
             /// 🔷 Options Row
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -67,43 +77,39 @@ class DesignPage extends StatelessWidget {
                   _optionCard(
                     icon: Icons.search,
                     label: 'Search',
-                    color: const Color(0xFFB77B4E),
-                    textColor: Colors.white,
+                    color: selectedOption == 0 ? const Color(0xFFB77B4E) : Colors.white,
+                    textColor: selectedOption == 0 ? Colors.white : Colors.black,
+                    onTap: () {
+                      setState(() => selectedOption = 0);
+                    },
                   ),
                   _optionCard(
                     icon: Icons.image_outlined,
                     label: 'Upload',
-                    color: Colors.white,
-                    textColor: Colors.black,
+                    color: selectedOption == 1 ? const Color(0xFFB77B4E) : Colors.white,
+                    textColor: selectedOption == 1 ? Colors.white : Colors.black,
+                    onTap: () {
+                      setState(() => selectedOption = 1);
+                    },
                   ),
                   _optionCard(
                     icon: Icons.cake_outlined,
                     label: 'Manual',
-                    color: Colors.white,
-                    textColor: Colors.black,
+                    color: selectedOption == 2 ? const Color(0xFFB77B4E) : Colors.white,
+                    textColor: selectedOption == 2 ? Colors.white : Colors.black,
+                    onTap: () {
+                      setState(() => selectedOption = 2);
+                    },
                   ),
                 ],
               ),
             ),
 
-            const SizedBox(height: 24),
+            const SizedBox(height: 16),
 
-            /// 🔷 Search bar
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: TextField(
-                decoration: InputDecoration(
-                  hintText: 'Search',
-                  prefixIcon: const Icon(Icons.search),
-                  filled: true,
-                  fillColor: Colors.white,
-                  contentPadding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide.none,
-                  ),
-                ),
-              ),
+            /// 🔷 Selected View
+            Expanded(
+              child: _getSelectedView(),
             ),
           ],
         ),
@@ -129,43 +135,67 @@ class DesignPage extends StatelessWidget {
     );
   }
 
+  Widget _getSelectedView() {
+    if (selectedOption == 0) {
+      return const SearchWidget();
+    } else if (selectedOption == 1) {
+      return const Center(
+        child: Text(
+          'Upload Coming Soon!',
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        ),
+      );
+    } else {
+      return const Center(
+        child: Text(
+          'Manual Coming Soon!',
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        ),
+      );
+    }
+  }
+
   Widget _optionCard({
     required IconData icon,
     required String label,
     required Color color,
     required Color textColor,
+    required VoidCallback onTap,
   }) {
-    return Container(
-      height: 50,
-      width: 100, // 👈 reduced from 120 to fit 3 cards in a row
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.circular(12),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black12,
-            blurRadius: 4,
-            offset: Offset(0, 2),
-          ),
-        ],
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(icon, color: textColor, size: 20),
-          const SizedBox(width: 4), // 👈 reduced gap between icon & text
-          Flexible(
-            child: Text(
-              label,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                fontSize: 12, // slightly smaller if needed
-                fontWeight: FontWeight.bold,
-                color: textColor,
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        height: 50,
+        width: 100,
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(12),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black12,
+              blurRadius: 4,
+              offset: Offset(0, 2),
+            ),
+          ],
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(icon, color: textColor, size: 20),
+            const SizedBox(width: 4),
+            Flexible(
+              child: Text(
+                label,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
+                  color: textColor,
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -54,12 +54,8 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/First_Screen.jpg
-    - assets/google_icon.png
-    - assets/Signup.jpg
-    - assets/Login.jpg
-    - assets/cake.jpg
-    - assets/cakes.png
+    - assets/
+    - assets/searchFeature/
 
 flutter_icons:
   android: true
